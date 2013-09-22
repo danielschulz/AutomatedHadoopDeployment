@@ -8,14 +8,22 @@
     <version>0.1</version>
     <packaging>jar</packaging>
 
-    <name>Basic Java Application</name>
-    <url>http://my-app.invalid</url>
+    <name>Basic MapReduce job</name>
+    <url>http://www.inovex.de</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0</version>
+            </extension>
+        </extensions>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -35,41 +43,165 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
+
+            <!-- sync developer's / client-side target/ directory with Hadoop machine's local file system -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0-beta-4</version>
+
+                <executions>
+                    <execution>
+                        <id>upload-jar</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>upload</goal>
+                        </goals>
+
+                        <configuration>
+                            <fromDir>${project.build.directory}</fromDir>
+                            <toDir>${inovexHadoopVM-clientFs-deploymentDirectory}</toDir>
+                            <includes>*.jar</includes>
+                            <serverId>inovexHadoopVM</serverId>
+                            <url>sftp://${inovexHadoopVM-username}@${inovexHadoopVM-url}</url>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- clean MapReduce-Output directory, run new MapReduce job, and merge the Reducer's part files -->
+            <plugin>
+                <groupId>com.github.goldin</groupId>
+                <artifactId>sshexec-maven-plugin</artifactId>
+                <version>0.2.5</version>
+
+                <executions>
+                    <execution>
+                        <id>run-hadoop-artifact</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>sshexec</goal>
+                        </goals>
+                        <configuration>
+                            <location>scp://${inovexHadoopVM-username}:${inovexHadoopVM-password}@${inovexHadoopVM-url}:${inovexHadoopVM-defaultUserDirectoryToLoginTo}</location>
+
+                            <commands>
+                                <!-- clean previously run directory iff exists -->
+                                <command>${inovexHadoopVM-hadoopExec} fs -rm -r -f ${inovexHadoopVM-hdfs-reducerOutput}</command>
+
+                                <!-- run currently deployed Hadoop Job (from latest site phase) -->
+                                <command>${inovexHadoopVM-hadoopExec} ${inovexHadoopVM-hadoopJavaExecArgument} ${inovexHadoopVM-clientFs-deploymentDirectory}${inovexHadoopVM-deployedJob-jarFileName} ${inovexHadoopVM-deployedJob-driverClass} ${inovexHadoopVM-hdfs-mapperInput} ${inovexHadoopVM-hdfs-reducerOutput}</command>
+                                <!-- example lined here for readability only:
+                                hadoop jar \
+                                hadoop-academyJobs-1.0-SNAPSHOT.jar de.inovex.academy.hadoop.DriverClass \
+                                data/osm/ data/osm/mapReduceOutputDirectory -->
+
+                                <!-- get result into local file system in virtual machine -->
+                                <command>${inovexHadoopVM-hadoopExec} fs -getmerge ${inovexHadoopVM-hdfs-reducerOutput} ${inovexHadoopVM-clientFs-fileForMergedReducerOutputs}
+                                </command>
+                            </commands>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- download merged file to developer's machine / client-side machine -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0-beta-4</version>
+
+                <executions>
+                    <execution>
+                        <id>download-merged-result</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+
+                        <configuration>
+                            <fromFile>${inovexHadoopVM-defaultUserDirectoryToLoginTo}${inovexHadoopVM-clientFs-fileForMergedReducerOutputs}</fromFile>
+                            <toFile>${developerClient-localPathToStoreMapReduceMergedFile}</toFile>
+
+                            <serverId>inovexHadoopVM</serverId>
+                            <url>sftp://${inovexHadoopVM-username}@${inovexHadoopVM-url}</url>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>inovexHadoopVM</id>
+            <url>sftp://${inovexHadoopVM-username}@${inovexHadoopVM-url}${inovexHadoopVM-clientFs-deploymentDirectory}</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
+
+        <!-- Hadoop dependencies -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-core</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <!-- convenience dependencies -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>12.0</version>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-exec</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.4</version>
+            <groupId></groupId>
         </dependency>
+
+        <!-- Unit testing dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.mrunit</groupId>
+            <artifactId>mrunit</artifactId>
+            <version>0.5.0-incubating</version>
+        </dependency>
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <version>1.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- logging dependencies -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.4</version>
         </dependency>
     </dependencies>
 
     <prerequisites>
         <maven>2.2.1</maven>
     </prerequisites>
-
 </project>
