@@ -1,1 +1,15 @@
+# binary and IDE/project excludes
 target/
+AutomatedHadoopDeployment/target/
+AutomatedHadoopDeployment/.idea/
+AutomatedHadoopDeployment/AutomatedHadoopDeployment.iml
+.gitignore
+
+
+# Java excludes
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

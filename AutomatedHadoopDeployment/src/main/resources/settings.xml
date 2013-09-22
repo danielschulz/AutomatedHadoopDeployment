@@ -1,0 +1,86 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Your collected deployment information -->
+    <profiles>
+        <profile>
+            <id>inovexMavenProfile</id>
+            <properties>
+                <!-- REMOTE DEPLOYMENT SECTION -->
+
+                <!-- the IP, URI, or server name to access your Hadoop machine from this client -->
+                <inovexHadoopVM-url>192.168.1.10</inovexHadoopVM-url>
+
+                <!-- the user account on this Hadoop machine -->
+                <inovexHadoopVM-username>daniel</inovexHadoopVM-username>
+                <!-- the user account's password on this Hadoop machine -->
+                <inovexHadoopVM-password>yourSecretPassword</inovexHadoopVM-password>
+
+                <!-- the users' home directory on the server (just used as 'pwd' / current directory onto executions) -->
+                <inovexHadoopVM-defaultUserDirectoryToLoginTo>/home/daniel/</inovexHadoopVM-defaultUserDirectoryToLoginTo>
+
+                <!-- the directory to deploy the Hadoop deployment into onto site phase -->
+                <inovexHadoopVM-clientFs-deploymentDirectory>/home/daniel/java/deployedJars/</inovexHadoopVM-clientFs-deploymentDirectory>
+                <inovexHadoopVM-clientFs-fileForMergedReducerOutputs>java/currentlyMergedFile</inovexHadoopVM-clientFs-fileForMergedReducerOutputs>
+
+
+                <!-- REMOTE EXECUTE SECTION -->
+                <!-- path to your Hadoop executable -->
+                <inovexHadoopVM-hadoopExec>/usr/bin/hadoop</inovexHadoopVM-hadoopExec>
+                <!-- packaging information for the deployment done (will most likely match ${project.packaging} from pom.xml) -->
+                <inovexHadoopVM-hadoopJavaExecArgument>jar</inovexHadoopVM-hadoopJavaExecArgument>
+
+                <!-- the name of your packaged files / archive (will most likely match
+                ${project.name}, ${project.version} and ${project.packaging} from pom.xml) -->
+                <inovexHadoopVM-deployedJob-jarFileName>AutomatedHadoopDeployment-0.1.jar</inovexHadoopVM-deployedJob-jarFileName>
+                <!-- the complete package reference to your Driver class -->
+                <inovexHadoopVM-deployedJob-driverClass>de.inovex.academy.hadoop.DriverClass</inovexHadoopVM-deployedJob-driverClass>
+
+                <!-- the mappers input: file or directory -->
+                <inovexHadoopVM-hdfs-mapperInput>data/candy/m-and-ms.txt</inovexHadoopVM-hdfs-mapperInput>
+                <!-- the reducers output directory -->
+                <inovexHadoopVM-hdfs-reducerOutput>data/candy/mrOut</inovexHadoopVM-hdfs-reducerOutput>
+
+                <!-- example lined here for readability only:
+                hadoop jar \
+                Basic-MapReduce-job-0.1.jar de.inovex.academy.hadoop.DriverClass \
+                data/candy/m-and-ms.txt data/candy/mrOut -->
+
+
+                <!-- LOCAL / CLIENT-SIDE PATHS -->
+                <developerClient-localPathToStoreMapReduceMergedFile>mergedResultFile</developerClient-localPathToStoreMapReduceMergedFile>
+            </properties>
+        </profile>
+    </profiles>
+
+    <localRepository/>
+    <interactiveMode/>
+    <usePluginRegistry/>
+    <offline/>
+    <pluginGroups/>
+    <activeProfiles/>
+    <proxies/>
+
+    <mirrors>
+        <mirror>
+            <id>UK</id>
+            <name>UK Central</name>
+            <url>http://uk.maven.org/maven2</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <!-- login credentials for your hadoop machine or inovex' virtualbox appliance -->
+    <servers>
+        <server>
+            <id>inovexHadoopVM</id>
+            <username>daniel</username>
+            <password>yourSecretPassword</password>
+            <filePermissions>664</filePermissions>
+            <directoryPermissions>775</directoryPermissions>
+            <configuration/>
+        </server>
+    </servers>
+</settings>

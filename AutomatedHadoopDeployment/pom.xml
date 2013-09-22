@@ -34,6 +34,7 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -41,6 +42,20 @@
                 <configuration>
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+
+            <!-- only prohibiting the major problem in maven 3.1.0 - but does
+            not completely solve it -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <generateProjectInfo>false</generateProjectInfo>
+                    <generateReports>false</generateReports>
+                    <generatedSiteDirectory>false</generatedSiteDirectory>
+                    <generateSitemap>false</generateSitemap>
                 </configuration>
             </plugin>
 
@@ -93,8 +108,8 @@
                                 <command>${inovexHadoopVM-hadoopExec} ${inovexHadoopVM-hadoopJavaExecArgument} ${inovexHadoopVM-clientFs-deploymentDirectory}${inovexHadoopVM-deployedJob-jarFileName} ${inovexHadoopVM-deployedJob-driverClass} ${inovexHadoopVM-hdfs-mapperInput} ${inovexHadoopVM-hdfs-reducerOutput}</command>
                                 <!-- example lined here for readability only:
                                 hadoop jar \
-                                hadoop-academyJobs-1.0-SNAPSHOT.jar de.inovex.academy.hadoop.DriverClass \
-                                data/osm/ data/osm/mapReduceOutputDirectory -->
+                                Basic-MapReduce-job-0.1.jar de.inovex.academy.hadoop.DriverClass \
+                                data/candy/m-and-ms.txt data/candy/mrOut -->
 
                                 <!-- get result into local file system in virtual machine -->
                                 <command>${inovexHadoopVM-hadoopExec} fs -getmerge ${inovexHadoopVM-hdfs-reducerOutput} ${inovexHadoopVM-clientFs-fileForMergedReducerOutputs}
@@ -153,6 +168,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>12.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -160,10 +176,6 @@
             <artifactId>commons-exec</artifactId>
             <version>1.0.1</version>
             <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId></groupId>
         </dependency>
 
         <!-- Unit testing dependencies -->
@@ -178,13 +190,14 @@
             <groupId>org.apache.mrunit</groupId>
             <artifactId>mrunit</artifactId>
             <version>0.5.0-incubating</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
             <version>1.2</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <!-- logging dependencies -->
@@ -192,12 +205,29 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.4</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.6.4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- SSH and remote copy support dependencies -->
+        <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>wagon-maven-plugin</artifactId>
+            <version>1.0-beta-4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.goldin</groupId>
+            <artifactId>sshexec-maven-plugin</artifactId>
+            <version>0.2.5</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
