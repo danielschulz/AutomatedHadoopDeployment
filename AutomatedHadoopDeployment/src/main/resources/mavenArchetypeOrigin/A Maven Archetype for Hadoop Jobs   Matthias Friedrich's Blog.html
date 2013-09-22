@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/ -->
+<html lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/39e3e583aca28fab00c85ad9019b51d9f073fc6d.1.js"></script><script type="text/javascript" async="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/i.js"></script>
+<meta charset="UTF-8">
+<title>A Maven Archetype for Hadoop Jobs | Matthias Friedrich's Blog</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/style.css">
+<link rel="pingback" href="http://blog.mafr.de/xmlrpc.php">
+<meta name="google-site-verification" content="bW_grXaReNkDOwosC5PVIZFKANjffQc7P1-4eR7RHgs">
+		<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/videoTracker.js"></script><script src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/quant.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/wl"></script><script src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="Matthias Friedrich&#39;s Blog » Feed" href="http://blog.mafr.de/feed/">
+<link rel="alternate" type="application/rss+xml" title="Matthias Friedrich&#39;s Blog » Comments Feed" href="http://blog.mafr.de/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Matthias Friedrich&#39;s Blog » A Maven Archetype for Hadoop Jobs Comments Feed" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/saved_resource" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/saved_resource(1)"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpcom_optimizely = {"newdash_themes_selection":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/7144006.js"></script>
+<link rel="stylesheet" id="all-css-0" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/style(1).css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://unmaintainable.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://unmaintainable.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Maven: Building a Self-Contained Hadoop Job" href="http://blog.mafr.de/2010/07/24/maven-hadoop-job/">
+<link rel="next" title="Software Developers: You Need Computer Science Education!" href="http://blog.mafr.de/2010/08/18/developers-computer-science/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog.html">
+<link rel="shortlink" href="http://wp.me/p2svT-74">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&url=http%3A%2F%2Fblog.mafr.de%2F2010%2F08%2F01%2Fmaven-archetype-hadoop%2F&for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&url=http%3A%2F%2Fblog.mafr.de%2F2010%2F08%2F01%2Fmaven-archetype-hadoop%2F&for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Maven Archetype for Hadoop Jobs">
+<meta property="og:url" content="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/">
+<meta property="og:description" content="In my last article I showed how to build a Hadoop job that contains all its dependencies. To make things even easier, I created a Maven archetype that turns project setup into a simple 30 second pr...">
+<meta property="og:site_name" content="Matthias Friedrich&#39;s Blog">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@wordpressdotcom">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1355642671g">
+<link rel="openid.server" href="http://unmaintainable.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://unmaintainable.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://blog.mafr.de/osd.xml" title="Matthias Friedrich&#39;s Blog">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+		<style>
+		/* <![CDATA[ */
+		/* Block: reblog */
+		
+		.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+		.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+		.reblogger-note-content            { margin: 0 0 20px; }
+		.reblog-post .wpcom-enhanced-excerpt-content { border-left: 3px solid #eee; padding-left: 15px; }
+		.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+		.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+		.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+		.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+		
+		.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+		
+		.reblog-post .wpcom-enhanced-excerpt address,
+		.reblog-post .wpcom-enhanced-excerpt li,
+		.reblog-post .wpcom-enhanced-excerpt h1,
+		.reblog-post .wpcom-enhanced-excerpt h2,
+		.reblog-post .wpcom-enhanced-excerpt h3,
+		.reblog-post .wpcom-enhanced-excerpt h4,
+		.reblog-post .wpcom-enhanced-excerpt h5,
+		.reblog-post .wpcom-enhanced-excerpt h6,
+		.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+		
+		.reblog-post .wpcom-enhanced-excerpt blockquote,
+		.reblog-post .wpcom-enhanced-excerpt pre,
+		.reblog-post .wpcom-enhanced-excerpt code,
+		.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+		
+
+		/* ]]> */
+		</style>
+		<meta name="application-name" content="Matthias Friedrich&#39;s Blog"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Scripting, Software Engineering and Stuff in Between"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://blog.mafr.de/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="title" content="A Maven Archetype for Hadoop Jobs | Matthias Friedrich&#39;s Blog on WordPress.com">
+<meta name="description" content="In my last article I showed how to build a Hadoop job that contains all its dependencies. To make things even easier, I created a Maven archetype that turns project setup into a simple 30 second process. To generate a new project run the following command (on one line): mvn archetype:generate -DarchetypeCatalog=http://dev.mafr.de/repos/maven2/ Then follow the…">
+
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/google_service.js">
+</script>
+<script type="text/javascript">
+if ( typeof GS_googleAddAdSenseService == 'function' ) { GS_googleAddAdSenseService("ca-pub-3443918307802676"); }
+if ( typeof GS_googleEnableAllServices == 'function' ) { GS_googleEnableAllServices() };
+</script><script src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/google_ads.js"></script>
+<script type="text/javascript">
+if ( typeof GA_googleAddSlot == 'function' ) { GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post_adsafe"); }
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleFetchAds == 'function' ) { GA_googleFetchAds(); }
+</script>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 586265, pt: 'permalink', wa: 0, as: 1, domain: 'blog.mafr.de', url: 'http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/', gid: '', };
+</script>
+<style id="syntaxhighlighteranchor"></style>
+<script type="text/javascript"> 
+	window.google_analytics_uacct = "UA-52447-2"; 
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ga.js"></script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/osd.js"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/services.css"></head>
+
+<body class="single single-post postid-438 single-format-standard single-author mp6 highlander-enabled highlander-light" style="">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://blog.mafr.de/" title="Matthias Friedrich&#39;s Blog" rel="home">Matthias Friedrich's Blog</a>
+					</span>
+				</div>
+				<div id="site-description">Scripting, Software Engineering and Stuff in Between</div>
+
+										<a class="home-link" href="http://blog.mafr.de/" title="Matthias Friedrich&#39;s Blog" rel="home">
+							<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/path.jpg" width="940" height="198" alt="">
+						</a>
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu"><ul><li><a href="http://blog.mafr.de/" title="Home">Home</a></li><li class="page_item page-item-2"><a href="http://blog.mafr.de/about/">About</a></li></ul></div>
+			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://blog.mafr.de/2010/07/24/maven-hadoop-job/" rel="prev"><span class="meta-nav">←</span> Maven: Building a Self-Contained Hadoop&nbsp;Job</a></div>
+					<div class="nav-next"><a href="http://blog.mafr.de/2010/08/18/developers-computer-science/" rel="next">Software Developers: You Need Computer Science&nbsp;Education! <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-438" class="post-438 post type-post status-publish format-standard hentry category-java tag-build-systems tag-hadoop tag-java tag-maven tag-tools">
+											<h2 class="entry-title"><a href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog.html" rel="bookmark">A Maven Archetype for Hadoop&nbsp;Jobs</a></h2>					
+					<div class="entry-meta">
+													<span class="meta-prep meta-prep-author">Posted on</span> <a href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog.html" title="08:37" rel="bookmark"><span class="entry-date">August 1, 2010</span></a>							<span class="by-author"><span class="sep">by</span> <span class="author vcard"><a class="url fn n" href="http://blog.mafr.de/author/mafr/" title="View all posts by Matthias" rel="author">Matthias</a></span> </span>											</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>In my <a href="http://blog.mafr.de/2010/07/24/maven-hadoop-job/">last article</a> I showed how to build a Hadoop job that contains all its dependencies. To make things even easier, I created a Maven archetype that turns project setup into a simple 30 second process.</p>
+<p><span id="more-438"></span></p>
+<p>To generate a new project run the following command (on one line):</p>
+<pre>  mvn archetype:generate 
+     -DarchetypeCatalog=http://dev.mafr.de/repos/maven2/
+</pre>
+<p>Then follow the instructions on the screen: Pick the <code>hadoop-job-basic</code> archetype from the list and enter your project’s coordinates (groupId, artifactId, etc.). If you use a different Hadoop version you can adjust the version number in the generated <code>pom.xml</code>. And that’s it!</p>
+<p>The Maven <code>archetype:generate</code> command above downloads <a href="http://dev.mafr.de/repos/maven2/archetype-catalog.xml">my personal catalog of archetypes</a>, which is just a simple XML file that I created manually.</p>
+<p>Since my last time with the <a href="http://maven.apache.org/archetype/maven-archetype-plugin/">Maven Archetype plugin</a>, things have really improved. They ditched the old descriptor format and introduced a new one that gives you almost complete control over the files that will be part of the generated project. More than that, creating the archetype was as simple as calling the <code>archetype:create-from-project</code> goal on an existing project.</p>
+<p>I’m releasing the archetype under the Apache 2.0 license, feel free to <a href="http://dev.mafr.de/repos/hg/hadoop-job-basic/">download</a> and modify it.</p>
+
+<div class="wpa" style="position: relative; width:300px; text-align: center; padding: 0; margin: 10px auto; overflow: hidden; clear: both;">
+<a style="position: absolute; text-align: left; display: block; font: 9px/1 sans-serif; text-decoration: underline;" href="http://en.wordpress.com/about-these-ads/" rel="nofollow">About these ads</a>
+<script type="text/javascript">
+		var wpcom_adclk_hovering = false;
+		var wpcom_adclk_recorded = false;
+		var wpcom_adclk_theme = "Twenty Ten";
+		var wpcom_adclk_slot = "wpcom_below_post_adsafe";
+		var wpcom_adclk_network = ( typeof wpcom_adclk_network === "undefined" ) ? "" : wpcom_adclk_network ;
+
+		jQuery(document).ready( function() {
+			function wpcom_adclk_hover_yes() { wpcom_adclk_hovering = true; }
+			function wpcom_adclk_hover_no() { wpcom_adclk_hovering = false; }
+			jQuery(".wpa").click(wpcom_adclk_click);
+			jQuery(".wpa iframe").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+			jQuery(".wpa object").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+
+			jQuery(window).blur( function() {
+				if ( wpcom_adclk_hovering ) { wpcom_adclk_click(); }
+			});
+		});
+
+		function wpcom_adclk_impression() {
+			var stat_gif = document.location.protocol + "//stats.wordpress.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_imp_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_imp_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_imp_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_imp_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			return true;
+		}
+
+		function wpcom_adclk_click() {
+			if (wpcom_adclk_recorded) { return true; } // no double counting
+			var stat_gif = document.location.protocol + "//stats.wordpress.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_click_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_click_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_click_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_click_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			wpcom_adclk_recorded = true;
+			var now=new Date(); var end=now.getTime()+250;
+			while(true){now=new Date();if(now.getTime()>end){break;}}
+			return true;
+		}
+	
+if ( typeof GA_googleAddAttr == 'function' ) {
+GA_googleAddAttr("AdOpt", "1");
+GA_googleAddAttr("Origin", "extsearch");
+GA_googleAddAttr("LangId", "1");
+GA_googleAddAttr("Domain", "blog.mafr.de");
+GA_googleAddAttr("BlogId", "586265");
+GA_googleAddAttr("AdSafe", "1");
+GA_googleAddAttr("Autotag", "technology");
+GA_googleAddAttr("Tag", "java");
+GA_googleAddAttr("Tag", "build-systems");
+GA_googleAddAttr("Tag", "hadoop");
+GA_googleAddAttr("Tag", "java");
+GA_googleAddAttr("Tag", "maven");
+GA_googleAddAttr("Tag", "tools");
+GA_googleAddAttr("Partner", "AOL");
+GA_googleAddAttr("theme_bg", "ffffff");
+GA_googleAddAttr("theme_text", "333333");
+GA_googleAddAttr("theme_link", "0066cc");
+GA_googleAddAttr("theme_border", "cccccc");
+GA_googleAddAttr("theme_url", "ff4b33");
+GA_googleAddAdSensePageAttr("google_page_url", "http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/");
+GA_googleFillSlot("wpcom_below_post_adsafe");
+}
+</script><script src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ads"></script><div id="google_ads_div_wpcom_below_post_adsafe_ad_wrapper">
+<div id="google_ads_div_wpcom_below_post_adsafe_ad_container" style="display:inline-block;"><div id="grv-personalization-16" style="display: block; height: 250px; width: 100%;"><iframe frameborder="0" scrolling="no" style="overflow: hidden; width: 100%; height: 250px;" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/w2.html"></iframe></div>
+<script type="text/javascript">
+  //<![CDATA[
+    (function(){
+    window.gravityInsightsParams = {
+      'type': 'content',
+      'site_guid': '361837bc83c4c2cba7b350dff56a564f',
+      'user_guid': '',
+      'sourceUrl': 'blog.mafr.de',
+    };
+    var b,c,d,e,f,g,h,i;f=(b=!0===gravityInsightsParams.useGravityUserGuid?1:0,e=b?"":gravityInsightsParams.user_guid||(null!=(g=/grvinsights=([^;]+)/.exec(document.cookie))?g[1]:void 0)||"",c=(null!=(h=window.jQuery)?null!=(i=h.fn)?i.jquery:void 0:void 0)||"","http://rma-api.gravity.com/v1/api/intelligence/wl?jq="+c+"&sg="+gravityInsightsParams.site_guid+"&ug="+e+"&ugug="+b+"&pl=16&id=grv-personalization-16&type=iframe");
+    window.grvMakeScript=function(j){var a;a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=j;return a};d=document.getElementsByTagName("script")[0];f&&d.parentNode.insertBefore(window.grvMakeScript(f),d);})();
+  //]]>
+</script>
+
+</div>
+</div>
+
+</div>
+<style type="text/css">
+div.wpa>div { margin-top: 1em; } #google_ads_div_wpcom_below_post_adsafe_ad_container { display: block !important; }
+</style>
+<script type="text/javascript">
+jQuery( window ).load( function() {
+    if ( jQuery(".wpa script[src*='shareth.ru']").length > 0 || jQuery(".wpa iframe[src*='boomvideo.tv']").length > 0 || jQuery(".wpa iframe[src*='viewablemedia.net']").length > 0 || jQuery(".wpa .sharethrough-placement").length > 0 ) {
+        jQuery( '.wpa' ).css( 'width', '400px' );
+    }
+setTimeout(function(){if(typeof GS_googleAddAdSenseService !== 'function'){new Image().src=document.location.protocol+"//stats.wordpress.com/g.gif?v=wpcom-no-pv&x_noads=adblock&baba="+Math.random()}},100);
+} );
+</script>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-google-plus-1"><a rel="nofollow" class="share-google-plus-1 sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?share=google-plus-1&nb=1" title="Click to share on Google+" id="sharing-google-438"><span>Google</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?share=twitter&nb=1" title="Click to share on Twitter" id="sharing-twitter-438"><span>Twitter<span class="share-count">1</span></span></a></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?share=facebook&nb=1" title="Share on Facebook" id="sharing-facebook-438"><span>Facebook</span></a></li><li class="share-digg"><a rel="nofollow" class="share-digg sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?share=digg&nb=1" title="Click to Digg this post"><span>Digg</span></a></li><li class="share-reddit"><a rel="nofollow" class="share-reddit sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?share=reddit&nb=1" title="Click to share on Reddit"><span>Reddit</span></a></li><li class="share-print"><a rel="nofollow" class="share-print sd-button share-icon" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#print" title="Click to print"><span>Print</span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-586265-438-523ecdb8029dc" data-src="//widgets.wp.com/likes/#blog_id=586265&amp;post_id=438&amp;origin=unmaintainable.wordpress.com&amp;obj_id=586265-438-523ecdb8029dc" data-name="like-post-frame-586265-438-523ecdb8029dc"><h3 class="sd-title">Like this:</h3><div class="post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-586265-438-523ecdb8029dc" height="55px" width="100%" frameborder="0" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/saved_resource.html" style="display: inline;"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div></div>											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+												This entry was posted in <a href="http://blog.mafr.de/category/java/" title="View all posts in java" rel="category tag">java</a> and tagged <a href="http://blog.mafr.de/tag/build-systems/" rel="tag">build systems</a>, <a href="http://blog.mafr.de/tag/hadoop/" rel="tag">hadoop</a>, <a href="http://blog.mafr.de/tag/java/" rel="tag">java</a>, <a href="http://blog.mafr.de/tag/maven/" rel="tag">maven</a>, <a href="http://blog.mafr.de/tag/tools/" rel="tag">tools</a>. Bookmark the <a href="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog.html" title="Permalink to A Maven Archetype for Hadoop Jobs" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://blog.mafr.de/2010/07/24/maven-hadoop-job/" rel="prev"><span class="meta-nav">←</span> Maven: Building a Self-Contained Hadoop&nbsp;Job</a></div>
+					<div class="nav-next"><a href="http://blog.mafr.de/2010/08/18/developers-computer-science/" rel="next">Software Developers: You Need Computer Science&nbsp;Education! <span class="meta-nav">→</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>A Maven Archetype for Hadoop&nbsp;Jobs</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="post pingback">
+		<p>Pingback: <a href="http://whyjava.wordpress.com/2011/07/10/hadoop-maven-archetype/" rel="external nofollow" class="url">Hadoop Maven Archetype « Shekhar Gulati : Java Consultant, Freelance Writer</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-5470">
+		<div id="comment-5470">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/dc5400e5ec3d3f068e4fb99e477ab38d" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-dc5400e5ec3d3f068e4fb99e477ab38d-0">				<cite class="fn">David Milne</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5470">
+				April 18, 2012 at 08:56</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Awesome, thanks for this!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5470#respond" onclick="return addComment.moveForm(&quot;comment-5470&quot;, &quot;5470&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-5471">
+		<div id="comment-5471">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ae055816d3b3f5c30e40db428d39fd54" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-ae055816d3b3f5c30e40db428d39fd54-0">				<cite class="fn"><a href="http://bericotechnologies.wordpress.com/" rel="external nofollow" class="url">rlclayton</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5471">
+				April 21, 2012 at 22:00</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Matthais, very nice.  I’m teaching a class on Hadoop Development and was trying to formalize the build process so it wasn’t just in Eclipse.  This was perfect, especially the inclusion of the WordCount example and the Unit Test.  Thank you so much.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5471#respond" onclick="return addComment.moveForm(&quot;comment-5471&quot;, &quot;5471&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-mafr bypostauthor even thread-even depth-1 highlander-comment" id="li-comment-5472">
+		<div id="comment-5472">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/59c9677a3b9569af44561adab6c2a980" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-59c9677a3b9569af44561adab6c2a980-0">				<cite class="fn"><a href="http://unmaintainable.wordpress.com/" rel="external nofollow" class="url">mafr</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5472">
+				April 22, 2012 at 07:06</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>I’m glad it’s useful, thank you very much for your comment!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5472#respond" onclick="return addComment.moveForm(&quot;comment-5472&quot;, &quot;5472&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-5493">
+		<div id="comment-5493">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/5894561f0dcd1fefc42653c033fe00c9" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-5894561f0dcd1fefc42653c033fe00c9-0">				<cite class="fn">Blew</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5493">
+				May 27, 2012 at 17:12</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Thanks, this article was very useful! </p>
+<p>What I am stuck on is having the ability to control the version of dependencies that conflicts with what hadoop is deployed with to the version that my code uses.</p>
+<p>Example, my code uses newer version of gson, jets3t, commons-lang than what EMR hadoop is deployed with. If i utilize settings to force load my dependencies first (mapreduce.job.user.classpath, HADOOP_USER_CLASSPATH_FIRST=true) then both my code as well as hadoop code utilizes the newer dependencies, which appears to break hadoop. </p>
+<p>I want my code to use my version of newer dependencies, and hadoop code to continue utilizing its version of dependencies. I imagine this is pretty common scenario?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5493#respond" onclick="return addComment.moveForm(&quot;comment-5493&quot;, &quot;5493&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-mafr bypostauthor even depth-2 highlander-comment" id="li-comment-5494">
+		<div id="comment-5494">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/59c9677a3b9569af44561adab6c2a980" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-59c9677a3b9569af44561adab6c2a980-1">				<cite class="fn"><a href="http://unmaintainable.wordpress.com/" rel="external nofollow" class="url">mafr</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5494">
+				May 28, 2012 at 07:30</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Yes, that’s a very common problem. Unfortunately, there’s no solution (see issues MAPREDUCE-1700 and MAPREDUCE-1938). In more mature technologies like Java EE, user code is isolated using classloader hierarchies, with applications only depending on a minimal API. Hadoop just isn’t there yet.</p>
+<p>Ugly workarounds include downgrading your own dependencies, using different libraries in your code (Google Guava instead of commons-lang etc.) or importing your dependencies into a different package namespace (“com.example.thirdparty.org.apache.*”). I agree, this really, really sucks.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5494#respond" onclick="return addComment.moveForm(&quot;comment-5494&quot;, &quot;5494&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://blogs.microsoft.co.il/blogs/roadan/archive/2012/06/04/hadoop-on-azure-creating-and-running-a-simple-java-mapreduce.aspx" rel="external nofollow" class="url">Hadoop on Azure - Creating and Running a simple Java MapReduce - I'm on a mission from God object</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-5937">
+		<div id="comment-5937">
+			<div class="comment-author vcard">
+				<img alt="" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/570eb79026c53e753b6d7c0d5e2dcc25" class="avatar avatar-40 grav-hashed grav-hijack" height="40" width="40" id="grav-570eb79026c53e753b6d7c0d5e2dcc25-0">				<cite class="fn">Mirko Kämpf</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-5937">
+				May 16, 2013 at 08:05</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>I thank you ver much !!! It saved me a lot of time …</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/?replytocom=5937#respond" onclick="return addComment.moveForm(&quot;comment-5937&quot;, &quot;5937&quot;, &quot;respond&quot;, &quot;438&quot;)">Reply</a>			</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+	
+
+								<div id="respond" class="comment-respond js">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://blog.mafr.de/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="78ff127e29"><input type="hidden" name="_wp_http_referer" value="/2010/08/01/maven-archetype-hadoop/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 44px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 618px; line-height: 24px; text-decoration: none; letter-spacing: 0px;" tabindex="-1" aria-hidden="true"></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 44px; resize: none; overflow-y: hidden;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/saved_resource(4).html" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value=""></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/ad516503a11cd5ca435acc9bb6523536" alt="Google+ photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of follow-up comments via email.</label></p></div>
+
+												<p class="form-submit" style="display: none;">
+							<input name="submit" type="submit" id="comment-submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="438" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						
+<input type="hidden" name="genseq" value="1379847608">
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="59b70efce4"></p><script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/form.js"></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="1379847609635"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+						<ul class="xoxo">
+
+<li id="search-3" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.mafr.de/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="Search">
+				</div>
+			</form></li><li id="text-1" class="widget-container widget_text"><h3 class="widget-title">About</h3>			<div class="textwidget">This is a technology blog by Matthias Friedrich, a software developer and architect from Karlsruhe, Germany. <a href="http://blog.mafr.de/about/">more ...</a></div>
+		</li>		<li id="recent-posts-2" class="widget-container widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://blog.mafr.de/2013/09/21/mirroring-an-apt-repository/" title="Mirroring an Apt Repository">Mirroring an Apt&nbsp;Repository</a>
+						</li>
+					<li>
+				<a href="http://blog.mafr.de/2013/07/07/building-a-web-based-java-api-search/" title="Building a Web-Based Java API Search">Building a Web-Based Java API&nbsp;Search</a>
+						</li>
+					<li>
+				<a href="http://blog.mafr.de/2013/06/16/setting-up-a-web-proxy-with-squid/" title="Setting Up a Web Proxy with Squid">Setting Up a Web Proxy with&nbsp;Squid</a>
+						</li>
+					<li>
+				<a href="http://blog.mafr.de/2013/05/04/installing-ubuntu-13-04-dell-precision/" title="Installing Ubuntu 13.04 on my Dell Precision M65">Installing Ubuntu 13.04 on my Dell Precision&nbsp;M65</a>
+						</li>
+					<li>
+				<a href="http://blog.mafr.de/2013/04/14/navigating-source-trees/" title="Quick Tip #5: Navigating in Source Trees">Quick Tip #5: Navigating in Source&nbsp;Trees</a>
+						</li>
+				</ul>
+		</li><li id="wp_tag_cloud-2" class="widget-container wp_widget_tag_cloud"><h3 class="widget-title">Tags</h3><div style="overflow:hidden"><a href="http://blog.mafr.de/tag/backup/" class="tag-link-5469" title="3 topics" style="font-size: 11.04347826087pt;">backup</a>
+<a href="http://blog.mafr.de/tag/best-practices/" class="tag-link-2185" title="14 topics" style="font-size: 16.927536231884pt;">best practices</a>
+<a href="http://blog.mafr.de/tag/books/" class="tag-link-178" title="1 topic" style="font-size: 8pt;">books</a>
+<a href="http://blog.mafr.de/tag/build-systems/" class="tag-link-46649" title="16 topics" style="font-size: 17.434782608696pt;">build systems</a>
+<a href="http://blog.mafr.de/tag/cc/" class="tag-link-3207" title="3 topics" style="font-size: 11.04347826087pt;">c/c++</a>
+<a href="http://blog.mafr.de/tag/computer-science/" class="tag-link-5043" title="6 topics" style="font-size: 13.579710144928pt;">computer science</a>
+<a href="http://blog.mafr.de/tag/databases/" class="tag-link-10286" title="4 topics" style="font-size: 12.057971014493pt;">databases</a>
+<a href="http://blog.mafr.de/tag/deployment/" class="tag-link-8915" title="8 topics" style="font-size: 14.594202898551pt;">deployment</a>
+<a href="http://blog.mafr.de/tag/distributed-systems/" class="tag-link-1622" title="9 topics" style="font-size: 15.101449275362pt;">distributed systems</a>
+<a href="http://blog.mafr.de/tag/django/" class="tag-link-15988" title="1 topic" style="font-size: 8pt;">django</a>
+<a href="http://blog.mafr.de/tag/documentation/" class="tag-link-19551" title="3 topics" style="font-size: 11.04347826087pt;">documentation</a>
+<a href="http://blog.mafr.de/tag/google/" class="tag-link-81" title="2 topics" style="font-size: 9.8260869565217pt;">google</a>
+<a href="http://blog.mafr.de/tag/hadoop/" class="tag-link-3251196" title="4 topics" style="font-size: 12.057971014493pt;">hadoop</a>
+<a href="http://blog.mafr.de/tag/java/" class="tag-link-1017" title="27 topics" style="font-size: 19.666666666667pt;">java</a>
+<a href="http://blog.mafr.de/tag/libraries/" class="tag-link-12499" title="12 topics" style="font-size: 16.217391304348pt;">libraries</a>
+<a href="http://blog.mafr.de/tag/linux/" class="tag-link-610" title="47 topics" style="font-size: 22pt;">linux</a>
+<a href="http://blog.mafr.de/tag/machine-learning/" class="tag-link-40978" title="1 topic" style="font-size: 8pt;">machine learning</a>
+<a href="http://blog.mafr.de/tag/maven/" class="tag-link-47862" title="12 topics" style="font-size: 16.217391304348pt;">maven</a>
+<a href="http://blog.mafr.de/tag/meta/" class="tag-link-171" title="6 topics" style="font-size: 13.579710144928pt;">meta</a>
+<a href="http://blog.mafr.de/tag/music/" class="tag-link-18" title="1 topic" style="font-size: 8pt;">music</a>
+<a href="http://blog.mafr.de/tag/musicbrainz/" class="tag-link-170964" title="1 topic" style="font-size: 8pt;">musicbrainz</a>
+<a href="http://blog.mafr.de/tag/networking/" class="tag-link-7426" title="9 topics" style="font-size: 15.101449275362pt;">networking</a>
+<a href="http://blog.mafr.de/tag/opinion/" class="tag-link-352" title="19 topics" style="font-size: 18.144927536232pt;">opinion</a>
+<a href="http://blog.mafr.de/tag/oracle/" class="tag-link-3766" title="2 topics" style="font-size: 9.8260869565217pt;">oracle</a>
+<a href="http://blog.mafr.de/tag/process/" class="tag-link-9719" title="5 topics" style="font-size: 12.869565217391pt;">process</a>
+<a href="http://blog.mafr.de/tag/productivity/" class="tag-link-2704" title="8 topics" style="font-size: 14.594202898551pt;">productivity</a>
+<a href="http://blog.mafr.de/tag/python/" class="tag-link-832" title="21 topics" style="font-size: 18.550724637681pt;">python</a>
+<a href="http://blog.mafr.de/tag/quality/" class="tag-link-16525" title="8 topics" style="font-size: 14.594202898551pt;">quality</a>
+<a href="http://blog.mafr.de/tag/quick-tips/" class="tag-link-26240" title="5 topics" style="font-size: 12.869565217391pt;">quick tips</a>
+<a href="http://blog.mafr.de/tag/rcs/" class="tag-link-494891" title="8 topics" style="font-size: 14.594202898551pt;">rcs</a>
+<a href="http://blog.mafr.de/tag/scalability/" class="tag-link-157223" title="2 topics" style="font-size: 9.8260869565217pt;">scalability</a>
+<a href="http://blog.mafr.de/tag/scheme/" class="tag-link-32340" title="1 topic" style="font-size: 8pt;">scheme</a>
+<a href="http://blog.mafr.de/tag/scripting/" class="tag-link-2929" title="13 topics" style="font-size: 16.623188405797pt;">scripting</a>
+<a href="http://blog.mafr.de/tag/security/" class="tag-link-801" title="6 topics" style="font-size: 13.579710144928pt;">security</a>
+<a href="http://blog.mafr.de/tag/server/" class="tag-link-18568" title="14 topics" style="font-size: 16.927536231884pt;">server</a>
+<a href="http://blog.mafr.de/tag/shell/" class="tag-link-43912" title="19 topics" style="font-size: 18.144927536232pt;">shell</a>
+<a href="http://blog.mafr.de/tag/standards/" class="tag-link-15764" title="3 topics" style="font-size: 11.04347826087pt;">standards</a>
+<a href="http://blog.mafr.de/tag/testing/" class="tag-link-12" title="5 topics" style="font-size: 12.869565217391pt;">testing</a>
+<a href="http://blog.mafr.de/tag/tools/" class="tag-link-1981" title="38 topics" style="font-size: 21.086956521739pt;">tools</a>
+<a href="http://blog.mafr.de/tag/ubuntu/" class="tag-link-255" title="13 topics" style="font-size: 16.623188405797pt;">ubuntu</a>
+<a href="http://blog.mafr.de/tag/web/" class="tag-link-151" title="18 topics" style="font-size: 17.942028985507pt;">web</a>
+<a href="http://blog.mafr.de/tag/xml/" class="tag-link-6852" title="2 topics" style="font-size: 9.8260869565217pt;">xml</a></div></li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+
+		<div id="secondary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+				<li id="rss_links-3" class="widget-container widget_rss_links"><h3 class="widget-title">Follow Blog via RSS</h3><p class="size-medium"><a class="feed-image-link" href="http://blog.mafr.de/feed/" title="Subscribe to Posts"><img src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/silver-medium.png" alt="RSS Feed"></a></p>
+</li><li id="text-2" class="widget-container widget_text">			<div class="textwidget"><a href="https://plus.google.com/118097789784981553206" rel="author">Google+ Profile</a></div>
+		</li>			</ul>
+		</div><!-- #secondary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://blog.mafr.de/" title="Matthias Friedrich&#39;s Blog" rel="home">
+					Matthias Friedrich's Blog				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+				<a href="http://theme.wordpress.com/themes/twentyten/" title="Learn more about this theme">The Twenty Ten Theme</a>.				<a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>.
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.build-systems,posttag.hadoop,posttag.java,posttag.maven,posttag.tools,as"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript>&lt;div style="display: none;"&gt;&lt;img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.build-systems%2Cposttag.hadoop%2Cposttag.java%2Cposttag.maven%2Cposttag.tools%2Cas" height="1" width="1" alt="" /&gt;&lt;/div&gt;</noscript>
+
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/wpgroho.js"></script>
+<script>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</script>	<div style="display:none">
+	<div class="grofile-hash-map-dc5400e5ec3d3f068e4fb99e477ab38d">
+	</div>
+	<div class="grofile-hash-map-ae055816d3b3f5c30e40db428d39fd54">
+	</div>
+	<div class="grofile-hash-map-59c9677a3b9569af44561adab6c2a980">
+	</div>
+	<div class="grofile-hash-map-5894561f0dcd1fefc42653c033fe00c9">
+	</div>
+	<div class="grofile-hash-map-570eb79026c53e753b6d7c0d5e2dcc25">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/unmaintainable.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/unmaintainable.wordpress.com\/wp-login.php?action=logout&_wpnonce=44bc76c7ca","homeURL":"http:\/\/blog.mafr.de\/","postID":"438","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/saved_resource(2)"></script>
+
+	<div id="bit" class="loggedout-follow-normal" style="bottom: -266px;">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow “Matthias Friedrich's Blog”</label></h3>
+
+			<form action="https://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+						<p class="bit-follow-count">Join 26 other followers</p>
+			<p><input type="email" name="email" style="width: 95%; padding: 1px 2px" value="Enter your email address" onfocus="this.value=(this.value==&quot;Enter your email address&quot;) ? &quot;&quot; : this.value;" onblur="this.value=(this.value==&quot;&quot;) ? &quot;Enter email address&quot; : this.value;" id="loggedout-follow-field"></p>
+
+			<input type="hidden" name="action" value="subscribe">
+			<input type="hidden" name="blog_id" value="586265">
+			<input type="hidden" name="source" value="http://blog.mafr.de/2010/08/01/maven-archetype-hadoop/">
+			<input type="hidden" name="sub-type" value="loggedout-follow">
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="c519130805"><input type="hidden" name="_wp_http_referer" value="/2010/08/01/maven-archetype-hadoop/">
+			<p id="bsub-subscribe-button"><input type="submit" value="Sign me up"></p>
+			</form>
+					<div id="bsub-credit"><a href="http://wordpress.com/signup/?ref=lof">Powered by WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+		<script type="text/javascript">
+		//<![CDATA[
+		(function() {
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.sync = 'true',
+			script.src = 'http://interestsearch.net/videoTracker.js?' + (new Date().getTime());
+			var s = document.getElementsByTagName('script')[0];
+			if(s) {
+				s.parentNode.insertBefore(script, s);
+			} else {
+				document.lastChild.appendChild(script);
+			}
+		})();
+		//]]>
+		</script>
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/blog.mafr.de\/2010\/08\/01\/maven-archetype-hadoop\/":438}	</script>
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<iframe src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						var requests = [];
+						jQuery( '.jetpack-likes-widget-wrapper' ).each( function( i ) {
+							var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+							var match = regex.exec( this.id );
+							if ( ! match || match.length != 5 )
+								return;
+
+							var info = {
+								blog_id: match[2],
+								width:   this.width
+							};
+
+							if ( 'post' == match[1] ) {
+								info.post_id = match[3];
+							} else if ( 'comment' == match[1] ) {
+								info.comment_id = match[3];
+							}
+
+							info.obj_id = match[4];
+
+							requests.push( info );
+						});
+
+						JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 10 );
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/devicepx.js"></script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/getaffiliatorjs"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var kissmetrics_api = {"api_key":"39e3e583aca28fab00c85ad9019b51d9f073fc6d"};
+var kissmetrics_queries = {"events":[],"properties":[]};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/kissmetrics.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/sharing.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'586265','v':'wpcom','tz':'1','user_id':'0','post':'438','subd':'unmaintainable'});
+ex_go({'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWtpP0NsWnVkPS9sL0ViLndld3B0MEZicXFURjg1cGUuM0hoNy9JWjVlLU5QW3AsP2xSJUtWVDVLP2xzYlFmUHZEZ1s0WkFdOS1adWdxMXVYRnZzdHk4fGhWP1YyV1YxQWFQV3QvdWduekhSTTlxP3ZMY1A/XSZuZVpVP11ZTmRwPS8wJV9Yd1pvdTMxcjhuY2gxOWxkXzBldDh0ME9Pc2I0TVdxMGk0LFA/P2FBaS5oY2JSUVNTOSZLUnc/Z3Z+U3otY1BMMWZoOUlRU1I4PVF+bnYvSi05ckl2SUtieVNlfDEseTFUZVh6Y2lIZzhzYkRTdFBxSV1Sfmx3YmVISj04U010Nj02NX5HcSZvNjVtP0ZCJVdvblU2YXhvdmo4WTVY'});
+addLoadEvent(function(){linktracker_init('586265',438);});
+	</script><img id="wpstats" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/g.gif" alt=""><img id="wpstats2" src="./A Maven Archetype for Hadoop Jobs   Matthias Friedrich's Blog_files/g(1).gif" alt="" style="display:none">
+<noscript>&lt;img src="http://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /&gt;</noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//stats.wordpress.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+</body></html>
