@@ -9,4 +9,3 @@ active maven settings.xml -- by default this is ~/.m2/settings.xml.
 
 Please note that this works in maven 3.0.5 but may encounter problems injecting 
 the ssh plugin on site phase.
-
