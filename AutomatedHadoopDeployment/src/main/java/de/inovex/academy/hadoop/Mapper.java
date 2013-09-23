@@ -7,8 +7,21 @@ import org.apache.hadoop.io.Text;
 
 import java.io.IOException;
 
+/**
+ * The mapper class first called on the raw inputs. It reads the M&M data as is and return it color-wise to it's
+ * combiner.
+ */
 public class Mapper extends org.apache.hadoop.mapreduce.Mapper<LongWritable, Text, Text, IntWritable> {
 
+    /**
+     * Reads the raw M&M data with a dummy key and the data in value.
+     *
+     * @param key Will be dropped
+     * @param value The Text from the data file
+     * @param context The execution's mapper context
+     * @throws IOException Any IOException that may occur
+     * @throws InterruptedException Any InterruptedException that may occur
+     */
     @Override
     public void map(final LongWritable key, final Text value, final Context context)
             throws IOException, InterruptedException {

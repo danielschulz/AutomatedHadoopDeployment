@@ -15,18 +15,44 @@ import java.io.IOException;
 
 public class DriverClass extends Configured implements Tool {
 
-    private static final int MAP_REDUCE_JOB_COUNT =                             5;
+    /**
+     * The job's human-readable name for the web interface.
+     */
     private static final String MAP_REDUCE_JOB_NAME =                           "count M&M colors";
 
+    /**
+     * The amount of reducers.
+     */
+    private static final int MAP_REDUCE_JOB_COUNT =                             5;
+
+    /**
+     * The mapper, combiner, and reducer phase classes.
+     */
     private static final Class<? extends Mapper> MAPPER =                       Mapper.class;
     private static final Class<? extends Reducer> COMBINER =                    Reducer.class;
     private static final Class<? extends Reducer> REDUCER =                     Reducer.class;
 
+    /**
+     * The key/value output classes for the mapper.
+     */
     private static final Class<? extends Writable> OUTPUT_MAP_KEY_CLASS =       Text.class;
     private static final Class<? extends Writable> OUTPUT_MAP_VALUE_CLASS =     IntWritable.class;
+
+    /**
+     * The key/value output classes for the reducer and combiner.
+     */
     private static final Class<? extends Writable> OUTPUT_KEY_CLASS =           Text.class;
     private static final Class<? extends Writable> OUTPUT_VALUE_CLASS =         IntWritable.class;
 
+    /**
+     * Sets up the job with the parameters given above in constants.
+     *
+     * @param args The command line options for the mapper's input and reducer's output destinations
+     * @return The exit code for the JVM: 0 for "everything is fine" and 1 otherwise
+     * @throws IOException Thrown when the mappers input does not exist
+     * @throws ClassNotFoundException Thrown when a classes definition is missing
+     * @throws InterruptedException Thrown on interrupting the MapReduce job
+     */
     @Override
     public int run(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 
@@ -53,6 +79,12 @@ public class DriverClass extends Configured implements Tool {
         return job.waitForCompletion(true) ? 0 : 1;
     }
 
+    /**
+     * Setp up the job with the run methode above and return it's exit code from return.
+     *
+     * @param args The command line options for the mapper's input and reducer's output destinations
+     * @throws Exception Any exception that may occur
+     */
     public static void main(String[] args) throws Exception {
         final DriverClass driverClass = new DriverClass();
         final int result = ToolRunner.run(driverClass, args);
